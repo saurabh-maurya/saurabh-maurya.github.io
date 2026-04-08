@@ -17,9 +17,9 @@
   --text-muted: #436278;
   --glow-sm:    0 0 18px rgba(0, 220, 232, 0.2);
   --glow-md:    0 0 40px rgba(0, 220, 232, 0.25);
-  --ff-display: 'Bricolage Grotesque', sans-serif;
+  --ff-display: 'Space Grotesk', sans-serif;
   --ff-mono:    'IBM Plex Mono', monospace;
-  --ff-body:    'IBM Plex Sans', sans-serif;
+  --ff-body:    'Inter', sans-serif;
   --radius:     8px;
   --radius-lg:  16px;
   --ease:       cubic-bezier(0.4, 0, 0.2, 1);
@@ -317,12 +317,12 @@ section { padding: 6rem 0; }
 }
 
 .hero-name {
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: var(--ff-display);
   font-size: clamp(3.8rem, 8.5vw, 6.8rem);
-  font-weight: 700;
-  font-style: italic;
+  font-weight: 600;
+  font-style: normal;
   line-height: 1.0;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.03em;
   color: var(--text-bright);
   margin-bottom: 0.35rem;
   animation: fadeUp 0.7s var(--ease) 0.25s both;
@@ -471,6 +471,13 @@ section { padding: 6rem 0; }
   object-fit: cover;
   border: 3px solid rgba(0,220,232,0.28);
   background: var(--surface2);
+  /* Blend image with hero background for a softer integrated look */
+  opacity: 0.84;
+  filter: saturate(0.78) contrast(1.08) brightness(0.78) hue-rotate(10deg);
+  mix-blend-mode: screen;
+  box-shadow:
+    inset 0 0 30px rgba(2, 11, 22, 0.45),
+    0 0 36px rgba(0, 220, 232, 0.1);
 }
 
 .avatar-glow {
@@ -478,9 +485,20 @@ section { padding: 6rem 0; }
   inset: 0;
   border-radius: 50%;
   box-shadow:
-    0 0 50px rgba(0,220,232,0.18),
-    0 0 100px rgba(0,220,232,0.09);
+    0 0 45px rgba(0,220,232,0.16),
+    0 0 90px rgba(155,114,249,0.12);
   pointer-events: none;
+}
+
+.avatar-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  /* Soft radial mask effect to merge edges into background */
+  background:
+    radial-gradient(circle at 50% 45%, rgba(0,220,232,0.08) 0%, rgba(0,220,232,0.04) 48%, rgba(2,11,22,0.55) 100%);
 }
 
 /* Floating tech chips */
