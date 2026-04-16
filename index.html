@@ -13,7 +13,7 @@
   <link
     rel="icon"
     type="image/svg+xml"
-    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23020b16'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='Arial,sans-serif' font-size='30' font-weight='700' fill='%2300dce8'%3ESM%3C/text%3E%3C/svg%3E"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231D6FD8'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='Arial,sans-serif' font-size='30' font-weight='700' fill='%23FFFFFF'%3ESM%3C/text%3E%3C/svg%3E"
   />
 
   <!-- Fonts -->
@@ -87,7 +87,7 @@
           <a href="#projects" class="btn btn-primary">
             <i class="fas fa-rocket"></i> View My Work
           </a>
-          <a href="docs/Saurabh Resume.pdf" download class="btn btn-secondary">
+          <a href="docs/Saurabh_Maurya_Resume.pdf" download class="btn btn-secondary">
             <i class="fas fa-download"></i> Download Resume
           </a>
         </div>
@@ -112,11 +112,14 @@
         <div class="avatar-wrap">
           <div class="avatar-orbit orbit-1"><div class="orbit-dot"></div></div>
           <div class="avatar-orbit orbit-2"><div class="orbit-dot"></div></div>
+          <div class="avatar-initials" id="avatar-initials">SM</div>
           <img
-            src="https://unavatar.io/linkedin/saurabhmaurya-"
+            src="https://github.com/saurabh-maurya.png"
             alt="Saurabh Maurya"
             class="avatar-img"
             loading="eager"
+            onerror="this.style.display='none'; document.getElementById('avatar-initials').style.display='flex';"
+            onload="document.getElementById('avatar-initials').style.display='none';"
           />
           <div class="avatar-glow"></div>
         </div>
@@ -213,13 +216,13 @@
           <div class="skill-tags">
             <span class="skill-tag">LLM Engineering</span>
             <span class="skill-tag">LangChain</span>
+            <span class="skill-tag">LangGraph</span>
             <span class="skill-tag">RAG</span>
             <span class="skill-tag">Generative AI</span>
             <span class="skill-tag">Prompt Engineering</span>
             <span class="skill-tag">OpenAI API</span>
             <span class="skill-tag">Anthropic Claude</span>
             <span class="skill-tag">Agentic Workflows</span>
-            <span class="skill-tag">TensorFlow</span>
             <span class="skill-tag">Structured Outputs</span>
             <span class="skill-tag">Tool Use</span>
             <span class="skill-tag">Knowledge Graphs</span>
@@ -233,6 +236,7 @@
           </div>
           <div class="skill-tags">
             <span class="skill-tag">Python</span>
+            <span class="skill-tag">FastAPI</span>
             <span class="skill-tag">Node.js</span>
             <span class="skill-tag">Neo4j</span>
             <span class="skill-tag">PostgreSQL</span>
@@ -253,6 +257,9 @@
           </div>
           <div class="skill-tags">
             <span class="skill-tag">AWS</span>
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">Kubernetes</span>
+            <span class="skill-tag">CI/CD</span>
             <span class="skill-tag">Dynatrace</span>
             <span class="skill-tag">AWR</span>
             <span class="skill-tag">LLD / HLD Design</span>
