@@ -79,6 +79,14 @@
       });
     }, { threshold: 0.16, rootMargin: "0px 0px -8% 0px" });
     revealTargets.forEach(function (el) { io.observe(el); });
+
+    // Failsafe: if the observer never fires (edge-case browsers, throttled tabs),
+    // force everything visible after a short delay so the page is never blank.
+    setTimeout(function () {
+      revealTargets.forEach(function (el) {
+        if (!el.classList.contains("in")) { el.classList.add("in"); io.unobserve(el); }
+      });
+    }, 2500);
   }
 
   /* ---------------- Counters (per-element, animate once) ---------------- */

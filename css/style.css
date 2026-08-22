@@ -239,20 +239,32 @@ em { font-style: italic; color: var(--accent); }
 .problem__head { margin-bottom: 3rem; }
 .problem__title { max-width: 20ch; }
 .problem__list {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  border-top: var(--bw) solid var(--line-strong);
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.1rem;
 }
 .problem__list li {
-  display: flex; align-items: baseline; gap: 1rem;
-  font-family: var(--f-display); font-size: clamp(1.05rem, 1rem + 0.4vw, 1.3rem); font-weight: 500;
-  padding: 1.5rem 1.4rem 1.5rem 0;
-  border-bottom: var(--bw) solid var(--line);
-  border-right: var(--bw) solid var(--line);
-  transition: background 0.3s, color 0.3s, padding-left 0.3s var(--ease);
+  display: flex; flex-direction: column; gap: 0.9rem;
+  min-height: 148px;
+  padding: 1.3rem;
+  background: var(--surface);
+  border: var(--bw) solid var(--line-strong);
+  font-family: var(--f-display); font-size: clamp(1.02rem, 1rem + 0.35vw, 1.22rem);
+  font-weight: 500; line-height: 1.2;
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), background 0.25s, color 0.25s;
 }
-.problem__list li:hover { background: var(--ink); color: var(--bg); padding-left: 1rem; }
-.problem__list li .idx { font-family: var(--f-mono); font-size: 0.72rem; color: var(--accent); }
-.problem__list li:hover .idx { color: var(--accent-2); }
+.problem__list li:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: var(--shadow-sm);
+  background: var(--ink); color: var(--bg);
+}
+.problem__list li .idx {
+  font-family: var(--f-mono); font-size: 0.78rem; font-weight: 700;
+  color: var(--accent); letter-spacing: 0.04em;
+  padding-bottom: 0.85rem; margin-bottom: auto;
+  border-bottom: var(--bw) solid var(--line);
+}
+.problem__list li:hover .idx { color: var(--accent-2); border-bottom-color: rgba(236,227,207,0.28); }
 .problem__answer {
   margin-top: 3rem; font-family: var(--f-display); font-weight: 500;
   font-size: clamp(1.4rem, 1rem + 2.2vw, 2.6rem); line-height: 1.12;
@@ -563,7 +575,7 @@ em { font-style: italic; color: var(--accent); }
   .case__step { border-right: none; border-bottom: var(--bw) solid var(--line); }
   .footer__inner { grid-template-columns: 1fr 1fr; }
   .footer__brand { grid-column: span 2; }
-  .problem__list li:hover { padding-left: 0.6rem; }
+  .problem__list li:hover { transform: none; box-shadow: none; }
 }
 
 /* =========================================================
