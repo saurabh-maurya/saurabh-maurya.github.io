@@ -343,7 +343,9 @@ em { font-style: italic; color: var(--accent); }
 .bento__cell p { color: var(--ink-soft); max-width: 34ch; }
 .bento__cell:hover { background: var(--bg-2); }
 .bento__cell--wide { grid-column: span 2; }
-.bento__cell--tall { grid-row: span 2; }
+/* End-to-end expertise: anchored to the right column, spanning two rows.
+   This pushes it right and lets Simple communication flow up a row. */
+.bento__cell--tall { grid-column: 3; grid-row: 1 / span 2; }
 .bento__cell--accent { background: var(--accent); color: var(--accent-ink); }
 .bento__cell--accent p { color: color-mix(in srgb, var(--accent-ink) 85%, transparent); }
 .bento__cell--accent:hover { background: var(--accent-2); }
@@ -499,12 +501,40 @@ em { font-style: italic; color: var(--accent); }
 .founder__chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
 .founder__chips li { font-family: var(--f-mono); font-size: 0.72rem; letter-spacing: 0.04em; padding: 0.4rem 0.8rem; border: var(--bw) solid var(--line-strong); text-transform: uppercase; }
 
-/* ===================== TESTIMONIALS ===================== */
-.quotes__grid { display: grid; grid-template-columns: 1.35fr 1fr; gap: var(--bw); background: var(--line-strong); border: var(--bw) solid var(--line-strong); }
-.quote { background: var(--bg); padding: clamp(1.6rem, 3vw, 2.6rem); display: flex; flex-direction: column; justify-content: space-between; gap: 1.6rem; }
-.quote--feature { grid-row: span 2; background: var(--accent); color: var(--accent-ink); }
+/* ===================== TESTIMONIALS (carousel) ===================== */
+.quotes__head { display: flex; align-items: flex-end; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
+
+.carousel__nav { display: flex; gap: 0.6rem; flex: none; }
+.carousel__btn {
+  width: 3rem; height: 3rem; flex: none; display: grid; place-items: center;
+  background: var(--bg); color: var(--ink); border: var(--bw) solid var(--line-strong);
+  cursor: pointer; transition: background 0.2s var(--ease), color 0.2s var(--ease), transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+.carousel__btn:hover:not(:disabled) { background: var(--accent); color: var(--accent-ink); }
+.carousel__btn:disabled { opacity: 0.32; cursor: default; }
+
+.quotes__carousel { position: relative; margin-inline: calc(-1 * var(--bw)); }
+.quotes__track {
+  display: flex; gap: var(--bw);
+  overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
+  padding: 2px; margin: -2px; /* room for focus outline */
+  -ms-overflow-style: none; scrollbar-width: none;
+  cursor: grab;
+}
+.quotes__track::-webkit-scrollbar { display: none; }
+.quotes__track.is-dragging { cursor: grabbing; scroll-behavior: auto; scroll-snap-type: none; }
+.quotes__track.is-dragging .quote { pointer-events: none; }
+
+.quote {
+  scroll-snap-align: start; flex: 0 0 auto;
+  width: clamp(280px, 78vw, 420px);
+  background: var(--bg); border: var(--bw) solid var(--line-strong);
+  padding: clamp(1.6rem, 3vw, 2.6rem);
+  display: flex; flex-direction: column; justify-content: space-between; gap: 1.6rem;
+}
+.quote--feature { width: clamp(300px, 82vw, 500px); background: var(--accent); color: var(--accent-ink); }
 .quote blockquote { font-family: var(--f-display); font-weight: 500; font-size: clamp(1.05rem, 1rem + 0.6vw, 1.45rem); line-height: 1.32; letter-spacing: -0.01em; }
-.quote--feature blockquote { font-size: clamp(1.4rem, 1rem + 1.6vw, 2.2rem); line-height: 1.22; }
+.quote--feature blockquote { font-size: clamp(1.3rem, 1rem + 1.2vw, 1.9rem); line-height: 1.24; }
 .quote figcaption { display: flex; flex-direction: column; gap: 0.2rem; }
 .quote__name { font-family: var(--f-mono); font-size: 0.85rem; font-weight: 700; }
 .quote__role { font-family: var(--f-mono); font-size: 0.74rem; color: var(--ink-soft); }
@@ -543,7 +573,7 @@ em { font-style: italic; color: var(--accent); }
 /* ===================== RESPONSIVE ===================== */
 @media (max-width: 1024px) {
   .bento { grid-template-columns: repeat(2, 1fr); }
-  .bento__cell--tall { grid-row: span 1; }
+  .bento__cell--tall { grid-column: auto; grid-row: span 1; }
   .tech__grid { grid-template-columns: repeat(2, 1fr); }
   .tech__col:nth-child(2) { border-right: none; }
 }
@@ -561,14 +591,14 @@ em { font-style: italic; color: var(--accent); }
   .founder__photo { max-width: 380px; }
   .faq__grid { grid-template-columns: 1fr; }
   .faq__aside { position: static; }
-  .quotes__grid { grid-template-columns: 1fr; }
-  .quote--feature { grid-row: span 1; }
+  .carousel__nav { display: none; }
 }
 @media (max-width: 620px) {
   .hero { padding-block: 6rem 3rem; }
   .hero__flow { flex-wrap: wrap; row-gap: 0.4rem; }
   .bento { grid-template-columns: 1fr; }
   .bento__cell--wide { grid-column: span 1; }
+  .bento__cell--tall { grid-column: auto; grid-row: auto; }
   .tech__grid { grid-template-columns: 1fr; }
   .tech__col { border-right: none; }
   .case { grid-template-columns: 1fr; }
@@ -655,10 +685,11 @@ main, .footer { position: relative; z-index: 1; }
 .case { border: var(--bw) solid var(--ink); box-shadow: var(--shadow); }
 .case__step { border-right-color: var(--ink); }
 
-/* Testimonials: framed grid + colored second quote */
-.quotes__grid { border: var(--bw) solid var(--ink); box-shadow: var(--shadow); background: var(--ink); }
-.quote { border: none; }
-.quote:nth-child(3) { background: var(--pop-2); }
+/* Testimonials: framed cards on a scroll rail */
+.quote { border: var(--bw) solid var(--ink); box-shadow: var(--shadow); }
+.carousel__btn { border-color: var(--ink); box-shadow: var(--shadow-sm); }
+.carousel__btn:hover:not(:disabled) { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--ink); }
+.carousel__btn:active:not(:disabled) { transform: none; box-shadow: var(--shadow-sm); }
 
 /* Founder: thick colored frame + drape reveal */
 .founder__photo {

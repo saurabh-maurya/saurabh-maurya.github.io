@@ -70,3 +70,76 @@
     magnets.forEach(function (el) { el.style.transform = ""; });
   }, { passive: true });
 })();
+
+/* =========================================================
+   Testimonials carousel — arrow nav + drag-to-scroll.
+   Progressive enhancement over a native scroll container.
+   ========================================================= */
+(function () {
+  "use strict";
+
+  var root = document.querySelector("[data-carousel]");
+  if (!root) return;
+
+  var track = root.querySelector("[data-carousel-track]");
+  var prev = document.querySelector("[data-carousel-prev]");
+  var next = document.querySelector("[data-carousel-next]");
+  if (!track) return;
+
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function step() {
+    // Advance by one card + gap; fall back to ~80% viewport of the track.
+    var card = track.querySelector(".quote");
+    var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+    return card ? card.getBoundingClientRect().width + gap : track.clientWidth * 0.8;
+  }
+
+  function scrollBy(dir) {
+    track.scrollBy({ left: dir * step(), behavior: reduce ? "auto" : "smooth" });
+  }
+
+  function updateButtons() {
+    if (!prev || !next) return;
+    var max = track.scrollWidth - track.clientWidth - 1;
+    prev.disabled = track.scrollLeft <= 1;
+    next.disabled = track.scrollLeft >= max;
+  }
+
+  if (prev) prev.addEventListener("click", function () { scrollBy(-1); });
+  if (next) next.addEventListener("click", function () { scrollBy(1); });
+  track.addEventListener("scroll", updateButtons, { passive: true });
+  window.addEventListener("resize", updateButtons, { passive: true });
+  updateButtons();
+
+  /* ---- Drag / swipe to scroll (pointer-based, fine pointers) ---- */
+  var down = false, startX = 0, startScroll = 0, moved = 0;
+
+  track.addEventListener("pointerdown", function (e) {
+    if (e.pointerType === "touch") return; // native touch scroll is better
+    down = true; moved = 0;
+    startX = e.clientX; startScroll = track.scrollLeft;
+    track.setPointerCapture(e.pointerId);
+  });
+  track.addEventListener("pointermove", function (e) {
+    if (!down) return;
+    var dx = e.clientX - startX;
+    if (Math.abs(dx) > 4 && !track.classList.contains("is-dragging")) {
+      track.classList.add("is-dragging");
+    }
+    moved = dx;
+    track.scrollLeft = startScroll - dx;
+  });
+  function endDrag(e) {
+    if (!down) return;
+    down = false;
+    track.classList.remove("is-dragging");
+    if (e && e.pointerId != null && track.hasPointerCapture(e.pointerId)) {
+      track.releasePointerCapture(e.pointerId);
+    }
+    updateButtons();
+  }
+  track.addEventListener("pointerup", endDrag);
+  track.addEventListener("pointercancel", endDrag);
+  track.addEventListener("dragstart", function (e) { e.preventDefault(); });
+})();

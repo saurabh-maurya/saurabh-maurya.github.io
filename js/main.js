@@ -59,7 +59,7 @@
   if (heroTitle) revealTargets.push(heroTitle);
 
   // Stagger index among direct-sibling reveal groups (list items etc.)
-  document.querySelectorAll(".problem__list, .svc, .bento, .metrics, .tech__grid, .steps").forEach(function (group) {
+  document.querySelectorAll(".problem__list, .svc, .bento, .metrics, .tech__grid, .steps, .quotes__track").forEach(function (group) {
     var kids = group.querySelectorAll("[data-reveal]");
     kids.forEach(function (k, i) { k.style.setProperty("--i", i); });
   });

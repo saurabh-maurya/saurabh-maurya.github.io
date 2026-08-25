@@ -230,6 +230,20 @@
           <article class="svc__row" role="listitem" tabindex="0" data-reveal>
             <div class="svc__num">04</div>
             <div class="svc__main">
+              <h3 class="svc__name">System Architecture Design</h3>
+              <p class="svc__line">Design systems built to last and scale.</p>
+            </div>
+            <p class="svc__desc">Architect resilient, scalable systems with the right structure, data flow, and trade-offs from day one.</p>
+            <ul class="svc__tags" role="list">
+              <li>System design</li><li>Scalable architecture</li><li>Cloud &amp; infrastructure</li>
+              <li>Data modelling</li><li>Microservices</li><li>Technical blueprints</li>
+            </ul>
+            <span class="svc__arrow" aria-hidden="true">→</span>
+          </article>
+
+          <article class="svc__row" role="listitem" tabindex="0" data-reveal>
+            <div class="svc__num">05</div>
+            <div class="svc__main">
               <h3 class="svc__name">Technology Consulting</h3>
               <p class="svc__line">Make better technology decisions.</p>
             </div>
@@ -317,9 +331,9 @@
           </ul>
 
           <ul class="founder__stats" data-reveal role="list">
-            <li><span class="num" data-count="8" data-suffix="+">0+</span><span class="lbl">Years building software</span></li>
-            <li><span class="num" data-count="30" data-suffix="+">0+</span><span class="lbl">Products shipped</span></li>
-            <li><span class="num" data-count="6" data-suffix="">0</span><span class="lbl">Industries served</span></li>
+            <li><span class="num" data-count="7" data-suffix="+">0+</span><span class="lbl">Years building software</span></li>
+            <li><span class="num" data-count="15" data-suffix="+">0+</span><span class="lbl">Products shipped</span></li>
+            <li><span class="num" data-count="8" data-suffix="+">0+</span><span class="lbl">Industries served</span></li>
           </ul>
 
           <div class="founder__cta" data-reveal>
@@ -412,50 +426,60 @@
          attribution before publishing. Fabricated testimonials are unlawful in many regions (e.g. FTC). -->
     <section class="section quotes" aria-labelledby="quotes-title">
       <div class="container">
-        <div class="section__head">
+        <div class="section__head quotes__head">
           <h2 class="h2" id="quotes-title" data-reveal>Results our clients felt.</h2>
+          <div class="carousel__nav" aria-hidden="true">
+            <button type="button" class="carousel__btn" data-carousel-prev aria-label="Previous testimonials">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"><path d="M15 5 8 12l7 7"/></svg>
+            </button>
+            <button type="button" class="carousel__btn" data-carousel-next aria-label="Next testimonials">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"><path d="M9 5l7 7-7 7"/></svg>
+            </button>
+          </div>
         </div>
 
-        <div class="quotes__grid">
-          <figure class="quote quote--feature" data-reveal>
-            <blockquote>&ldquo;They understood our business before touching the tech. We finally have automation that saves real hours every week, and I actually understood every decision along the way.&rdquo;</blockquote>
-            <figcaption>
-              <span class="quote__name">Abhinay</span>
-              <span class="quote__role">Operations Director, Abstract Ambition</span>
-            </figcaption>
-          </figure>
+        <div class="quotes__carousel" data-carousel>
+          <ul class="quotes__track" data-carousel-track role="list" tabindex="0" aria-label="Client testimonials, scrollable">
+            <li class="quote quote--feature" data-reveal>
+              <blockquote>&ldquo;They understood our business before touching the tech. We finally have automation that saves real hours every week, and I actually understood every decision along the way.&rdquo;</blockquote>
+              <figcaption>
+                <span class="quote__name">Abhinay</span>
+                <span class="quote__role">Operations Director, Abstract Ambition</span>
+              </figcaption>
+            </li>
 
-          <figure class="quote" data-reveal>
-            <blockquote>&ldquo;Clear, honest, and fast. We shipped in weeks, not quarters.&rdquo;</blockquote>
-            <figcaption>
-              <span class="quote__name">Swapnil</span>
-              <span class="quote__role">Founder, Vorteconn</span>
-            </figcaption>
-          </figure>
+            <li class="quote" data-reveal>
+              <blockquote>&ldquo;Clear, honest, and fast. We shipped in weeks, not quarters.&rdquo;</blockquote>
+              <figcaption>
+                <span class="quote__name">Swapnil</span>
+                <span class="quote__role">Founder, Vorteconn</span>
+              </figcaption>
+            </li>
 
-          <figure class="quote" data-reveal>
-            <blockquote>&ldquo;The AI roadmap paid for itself. No jargon, just a plan we could act on.&rdquo;</blockquote>
-            <figcaption>
-              <span class="quote__name">Meemnasha</span>
-              <span class="quote__role">Head of Product, Alien Bikes</span>
-            </figcaption>
-          </figure>
+            <li class="quote" data-reveal>
+              <blockquote>&ldquo;The AI roadmap paid for itself. No jargon, just a plan we could act on.&rdquo;</blockquote>
+              <figcaption>
+                <span class="quote__name">Meemnasha</span>
+                <span class="quote__role">Head of Product, Alien Bikes</span>
+              </figcaption>
+            </li>
 
-          <figure class="quote" data-reveal>
-            <blockquote>&ldquo;They took time to learn how we actually run the shop floor, then built tech around it. Reliable, and easy to work with.&rdquo;</blockquote>
-            <figcaption>
-              <span class="quote__name">Bhuvnes</span>
-              <span class="quote__role">Verdant Motors</span>
-            </figcaption>
-          </figure>
+            <li class="quote" data-reveal>
+              <blockquote>&ldquo;They took time to learn how we actually run the shop floor, then built tech around it. Reliable, and easy to work with.&rdquo;</blockquote>
+              <figcaption>
+                <span class="quote__name">Bhuvnes</span>
+                <span class="quote__role">Verdant Motors</span>
+              </figcaption>
+            </li>
 
-          <figure class="quote" data-reveal>
-            <blockquote>&ldquo;Practical, responsive, and genuinely invested in the outcome. The delivery matched what was promised.&rdquo;</blockquote>
-            <figcaption>
-              <span class="quote__name">Sumit</span>
-              <span class="quote__role">Sumit Lega Associates</span>
-            </figcaption>
-          </figure>
+            <li class="quote" data-reveal>
+              <blockquote>&ldquo;Practical, responsive, and genuinely invested in the outcome. The delivery matched what was promised.&rdquo;</blockquote>
+              <figcaption>
+                <span class="quote__name">Sumit</span>
+                <span class="quote__role">Sumit Lega Associates</span>
+              </figcaption>
+            </li>
+          </ul>
         </div>
       </div>
     </section>
